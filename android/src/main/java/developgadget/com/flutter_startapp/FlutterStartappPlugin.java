@@ -71,7 +71,6 @@ public class FlutterStartappPlugin implements MethodCallHandler {
             @Override
             public void onReceiveAd(Ad ad) {
                 FlutterStartappPlugin.this.channel.invokeMethod("onReceiveAd", null);
-                startAppAd.showAd(FlutterStartappPlugin.this.adDisplayListener);
             }
 
             @Override
@@ -100,14 +99,17 @@ public class FlutterStartappPlugin implements MethodCallHandler {
             case "AutoIterstitial":
                 callAutoIterstitial(call, result);
                 break;
-            case "ShowInterstitial":
-                callShowInterstitial(call, result);
+            case "LoadInterstitial":
+                callLoadInterstitial(call, result);
                 break;
-            case "ShowRewarded":
-                callShowRewarded(call, result);
+            case "LoadRewarded":
+                callLoadRewarded(call, result);
                 break;
             case "AutoInterstitialActivities":
                 callAutoInterstitialActivities(call, result);
+                break;
+            case "ShowAd":
+                startAppAd.showAd(FlutterStartappPlugin.this.adDisplayListener);
                 break;
             default:
                 result.notImplemented();
@@ -147,12 +149,12 @@ public class FlutterStartappPlugin implements MethodCallHandler {
         result.success(Boolean.TRUE);
     }
 
-    private void callShowInterstitial(MethodCall call, Result result) {
-        startAppAd.showAd(this.adDisplayListener);
+    private void callLoadInterstitial(MethodCall call, Result result) {
+        startAppAd.loadAd(StartAppAd.AdMode.AUTOMATIC, this.adEventListener);
         result.success(Boolean.TRUE);
     }
 
-    private void callShowRewarded(MethodCall call, Result result) {
+    private void callLoadRewarded(MethodCall call, Result result) {
         startAppAd.setVideoListener(new VideoListener() {
             @Override
             public void onVideoCompleted() {
