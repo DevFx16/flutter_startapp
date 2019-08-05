@@ -1,14 +1,83 @@
 # flutter_startapp
 
-StartApp Ads
+**Note: Currently only Android platform is supported.**
+
+**Note: AndroidX is required.**
+
+**Note: only show interstitial and video rewarded ads.**
 
 ## Getting Started
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+1. Initialization
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+Call `Startapp.init();` during app initialization.
+
+```dart
+ Startapp.init(appId: 'your_app_id', defaultAd: true or false);
+```
+
+### 2. Request Interstitial Ad and Rewarded Video Ad
+
+```dart
+ Interstitial(listener: _listener)..load();
+```
+
+**On Class Listener implements AdEventListener**
+
+```dart
+ class Event implements AdEventListener {
+  @override
+  void adClicked() {
+    // TODO: implement adClicked
+  }
+
+  @override
+  void adDisplayed() {
+    // TODO: implement adDisplayed
+  }
+
+  @override
+  void adHidden() {
+    // TODO: implement adHidden
+  }
+
+  @override
+  void adNotDisplayed() {
+    // TODO: implement adNotDisplayed
+  }
+
+  @override
+  void onFailedToReceiveAd() {
+    // TODO: implement onFailedToReceiveAd
+  }
+
+  @override
+  void onReceiveAd() {
+    Startapp.showAd();
+  }
+
+  @override
+  void onVideoCompleted() {
+  // TODO: implement onVideoCompleted
+  }
+}
+```
+
+## Events
+
+| Event              | Description                                                                        |
+|--------------------|------------------------------------------------------------------------------------|
+| onReceiveAd    | Called in response to an ad request when the request has been successfully filled. |
+| onFailedToReceiveAd | Called in response to an ad request when the request failed to fill.               |
+| adDisplayed           | Called when the interstitial ad opens.                                             |
+| adNotDisplayed         | Called when an ad not open          |
+| adClicked         | Called when an user click to ad            |
+| adHidden         | Called when an ad is close        |
+| onVideoCompleted           | Called when the rewarded video ends successfully.                                  |
+
+
+## Future Work
+Implement for iOS platform, Banner Ads, NativeAds,
+
+## [More Info]("https://support.startapp.com/hc/en-us/articles/115007225767-Integrate-our-SDK")
+
