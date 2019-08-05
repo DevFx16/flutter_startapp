@@ -79,5 +79,5 @@ Call `Startapp.init();` during app initialization.
 ## Future Work
 Implement for iOS platform, Banner Ads, NativeAds,
 
-## [More Info]("https://support.startapp.com/hc/en-us/articles/115007225767-Integrate-our-SDK")
+## [More Info]("https://support.startapp.com/hc/en-us/articles/115007225767-Integrate-our-SDK"){:target="_blank"}
 

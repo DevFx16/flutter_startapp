@@ -1,16 +1,93 @@
-# flutter_startapp_example
+```dart
+import 'package:flutter/material.dart';
+import 'dart:async';
+import 'package:flutter_startapp/flutter_startapp.dart';
 
-Demonstrates how to use the flutter_startapp plugin.
+void main() => runApp(MyApp());
 
-## Getting Started
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
 
-This project is a starting point for a Flutter application.
+class _MyAppState extends State<MyApp> {
+  String _platformVersion = 'Unknown';
+  AdEventListener _listener = Event();
 
-A few resources to get you started if this is your first Flutter project:
+  @override
+  void initState() {
+    super.initState();
+    Startapp.init(appId: '207038995', defaultAd: true);
+  }
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Plugin example app'),
+        ),
+        body: Center(
+            child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            MaterialButton(
+              onPressed: () {
+                Interstitial(listener: _listener)..load();
+              },
+              color: Colors.lightGreen,
+              child: Text('Show Interstitial Ad'),
+            ),
+            MaterialButton(
+              onPressed: () {
+                Rewarded(listener: _listener)..load();
+              },
+              color: Colors.lightGreen,
+              child: Text('Show Rewarded Ad'),
+            )
+          ],
+        )),
+      ),
+    );
+  }
+}
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+class Event implements AdEventListener {
+  @override
+  void adClicked() {
+    // TODO: implement adClicked
+  }
+
+  @override
+  void adDisplayed() {
+    // TODO: implement adDisplayed
+  }
+
+  @override
+  void adHidden() {
+    // TODO: implement adHidden
+  }
+
+  @override
+  void adNotDisplayed() {
+    // TODO: implement adNotDisplayed
+  }
+
+  @override
+  void onFailedToReceiveAd() {
+    // TODO: implement onFailedToReceiveAd
+  }
+
+  @override
+  void onReceiveAd() {
+    Startapp.showAd();
+  }
+
+  @override
+  void onVideoCompleted() {
+    print('Hola Mundo');
+  }
+}
+
+```
