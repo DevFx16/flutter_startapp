@@ -96,7 +96,7 @@ public class FlutterStartappPlugin implements MethodCallHandler {
             case "DisableSplash":
                 callDisableSplash(call, result);
                 break;
-            case "AutoIterstitial":
+            case "AutoInterstitial":
                 callAutoIterstitial(call, result);
                 break;
             case "LoadInterstitial":

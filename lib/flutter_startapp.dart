@@ -70,6 +70,12 @@ class Startapp {
   static Future<dynamic> autoInterstitial(bool enable) async =>
       await _invokeBooleanMethod('AutoInterstitial', {'Enable': enable});
 
+  static Future<dynamic> loadInterstitial(bool enable) async =>
+      await _invokeBooleanMethod('LoadInterstitial');
+
+  static Future<dynamic> loadRewarded(bool enable) async =>
+      await _invokeBooleanMethod('LoadRewarded');
+
   static Future<dynamic> _handleMethod(MethodCall call) {
     if (call.method == "adHidden") {
       if (listener != null && listener.adHidden != null) listener.adHidden();
