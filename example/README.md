@@ -17,7 +17,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    Startapp.init(appId: '207038995', defaultAd: true);
+    Startapp.init(appId: 'your_app_id', defaultAd: true);
   }
 
   @override
