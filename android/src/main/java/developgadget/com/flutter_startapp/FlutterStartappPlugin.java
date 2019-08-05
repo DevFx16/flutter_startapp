@@ -46,19 +46,19 @@ public class FlutterStartappPlugin implements MethodCallHandler {
             @Override
             public void adHidden(Ad ad) {
                 FlutterStartappPlugin.this.channel.invokeMethod("adHidden", null);
-                Log.d("adHidden", ad.getErrorMessage());
+                Log.d("adHidden", "Hidden");
             }
 
             @Override
             public void adDisplayed(Ad ad) {
                 FlutterStartappPlugin.this.channel.invokeMethod("adDisplayed", null);
-                Log.d("adDisplayed", ad.getErrorMessage());
+                Log.d("adDisplayed", "complete");
             }
 
             @Override
             public void adClicked(Ad ad) {
                 FlutterStartappPlugin.this.channel.invokeMethod("adClicked", null);
-                Log.d("adClicked", ad.getErrorMessage());
+                Log.d("adClicked", "Click");
             }
 
             @Override
@@ -71,6 +71,7 @@ public class FlutterStartappPlugin implements MethodCallHandler {
             @Override
             public void onReceiveAd(Ad ad) {
                 FlutterStartappPlugin.this.channel.invokeMethod("onReceiveAd", null);
+		Log.d("onFailedToReceiveAd", "Ad ready");
             }
 
             @Override
